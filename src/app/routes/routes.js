@@ -1,24 +1,15 @@
+const { check, validationResult } = require('express-validator');
+
 const LivroDao = require('../infra/livro-dao');
 const db = require('../../config/database');
 
 module.exports = app => {
   // Rota inicial
   app.get('/', (request, response) => {
-    const html = `
-      <!DOCTYPE html>
-      <html lang="pt-br">
-      <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home</title>
-      </head>
-      <body>
-        <h1>Olá Mundo!</h1>
-      </body>
-    `;
+    response.marko(
+      require('../views/base/base/home.marko'),
+    );
 
-    response.send(html);
   });
 
    // lista todos os livros
@@ -75,5 +66,7 @@ module.exports = app => {
       .then(response.redirect('/livros'))
       .catch(erro => console.log(erro));
   });
+
+  
 
 }
