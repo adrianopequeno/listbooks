@@ -30,8 +30,22 @@
   <main class="conteudoPrincipal">
     <div class="container">
 
-      <h1>Cadastro de livros</h1>
-      <form action="/livros" method="post">
+      <div class="form-title">
+        <h1>Cadastro de livros</h1>
+        <a href="http://localhost:3000/livros">
+          <button class="btn btn-info">Voltar</button>
+        </a>
+      </div>
+
+      <if(input.errosValidacao)>
+        <for|data| of=input.errosValidacao>
+          <div class="alert alert-danger">
+            ${data.path} - ${data.msg}
+          </div>
+        </for>
+      </if>
+
+      <form action="/livros" method="post" class="form">
         <if(input.livro.id)>
           <input type="hidden" name="_method" value="PUT">
           <input type="hidden" id="id" name="id" value="${input.livro.id}" />
@@ -53,9 +67,6 @@
         </div>
 
         <input type="submit" value="Salvar" class="btn btn-success bt-success" />
-        <a href="http://localhost:3000/livros">
-          <button class="btn btn-info">Voltar</button>
-        </a>
 
       </form>
     </div>

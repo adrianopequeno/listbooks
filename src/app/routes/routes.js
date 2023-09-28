@@ -37,9 +37,26 @@ module.exports = app => {
   });
 
   // Adiciona um novo livro
-  app.post('/livros', (request, response) => {
+  app.post('/livros', [
+    check('titulo').isLength({ min: 5 }).withMessage('O título deve ter pelo menos 5 caracteres'),
+    check('preco').isCurrency().withMessage('O preço deve ser um valor monetário válido')
+  ],(request, response) => {
     console.log(request.body);
     const livroDao = new LivroDao(db);
+
+    const erros = validationResult(request);
+    console.log(erros);
+
+    if(!erros.isEmpty()) {
+      return response.marko(
+        require('../views/livros/form/form.marko'),
+        { 
+          livro: {},
+          errosValidacao: erros.array()
+        }
+      );
+    }
+
     livroDao.adiciona(request.body)
       .then(response.redirect('/livros'))
       .catch(erro => console.log(erro));

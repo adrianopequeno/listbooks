@@ -69,3 +69,13 @@
 .bt-new-book {
     margin-bottom: 10px;
 }
+
+.form {
+    margin-bottom: 16px;
+}
+
+.form-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
