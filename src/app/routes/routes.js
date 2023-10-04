@@ -1,12 +1,9 @@
-const { check, validationResult } = require('express-validator');
+const Livro = require('../modelos/livro');
 
 const BaseControlador = require('../controladores/base-controlador');
 const baseControlador = new BaseControlador();
 const LivroControlador = require('../controladores/livro-controlador');
 const livroControlador = new LivroControlador();
-
-// const LivroDao = require('../infra/livro-dao');
-// const db = require('../../config/database');
 
 module.exports = app => {
 
@@ -29,10 +26,7 @@ module.exports = app => {
   app.get(rotasLivro.edicao, livroControlador.formularioEdicao());
 
   // Adiciona um novo livro
-  app.post(rotasLivro.lista,  [
-    check('titulo').isLength({ min: 5 }).withMessage('O título deve ter pelo menos 5 caracteres'),
-    check('preco').isCurrency().withMessage('O preço deve ser um valor monetário válido')
-  ], livroControlador.cadastrar());
+  app.post(rotasLivro.lista, Livro.validacoes(), livroControlador.cadastrar());
 
   // Atualiza um livro
   app.put(rotasLivro.lista, livroControlador.editar());

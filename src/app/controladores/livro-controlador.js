@@ -30,6 +30,7 @@ class LivroControlador {
     return (request, response) => {
       const id = request.params.id;
       const livroDao = new LivroDao(db);
+
       livroDao.buscaPorId(id)
         .then(livro => response.marko(
             require('../views/livros/form/form.marko'),
@@ -66,7 +67,6 @@ class LivroControlador {
 
   cadastrar() {
     return (request, response) => {
-      console.log(request.body);
       const livroDao = new LivroDao(db);
   
       const erros = validationResult(request);
@@ -90,7 +90,6 @@ class LivroControlador {
 
   editar() {
     return (request, response) => {
-      console.log(request.body);
       const livroDao = new LivroDao(db);
       livroDao.atualiza(request.body)
         .then(response.redirect(LivroControlador.rotas().lista))
