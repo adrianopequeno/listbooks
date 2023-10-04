@@ -9,31 +9,35 @@ const livroControlador = new LivroControlador();
 // const db = require('../../config/database');
 
 module.exports = app => {
+
+  const rotasBase = BaseControlador.rotas();
+  const rotasLivro = LivroControlador.rotas();
+
   // Rota inicial
-  app.get('/', baseControlador.home());
+  app.get(rotasBase.home, baseControlador.home());
 
    // lista todos os livros
-  app.get('/livros', livroControlador.lista());
+  app.get(rotasLivro.lista, livroControlador.lista());
 
   // Pega um livro pelo id
-  app.get('/livros/form/:id', livroControlador.pegaPorId());
+  app.get(rotasLivro.edicao, livroControlador.pegaPorId());
 
   // Rota para iniciar a criação de um novo livro
-  app.get('/livros/form', livroControlador.formularioCadastro());
+  app.get(rotasLivro.cadastro, livroControlador.formularioCadastro());
 
   // Rota para iniciar a atualização de um livro
-  app.get('/livros/form/:id', livroControlador.formularioEdicao());
+  app.get(rotasLivro.edicao, livroControlador.formularioEdicao());
 
   // Adiciona um novo livro
-  app.post('/livros',  [
+  app.post(rotasLivro.lista,  [
     check('titulo').isLength({ min: 5 }).withMessage('O título deve ter pelo menos 5 caracteres'),
     check('preco').isCurrency().withMessage('O preço deve ser um valor monetário válido')
   ], livroControlador.cadastrar());
 
   // Atualiza um livro
-  app.put('/livros', livroControlador.editar());
+  app.put(rotasLivro.lista, livroControlador.editar());
 
   // Remove um livro
-  app.delete('/livros/:id', livroControlador.remover());
+  app.delete(rotasLivro.delecao, livroControlador.remover());
 
 }
