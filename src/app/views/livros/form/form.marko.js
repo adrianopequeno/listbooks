@@ -32,7 +32,7 @@ function render(input, out, __component, component, state) {
     });
   }
 
-  out.w("<form action=/livros method=post class=form>");
+  out.w("<form action=/livros/form method=post class=form>");
 
   if (input.livro.id) {
     out.w("<input type=hidden name=_method value=PUT><input type=hidden id=id name=id" +
