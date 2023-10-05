@@ -1,3 +1,5 @@
+const templates = require('../views/templates');
+
 class BaseControlador {
 
   static rotas() {
@@ -9,7 +11,7 @@ class BaseControlador {
   home() {
     return (request, response) => {
       response.marko(
-        require('../views/base/base/home.marko'),
+        templates.base.home,
       );
   
     }

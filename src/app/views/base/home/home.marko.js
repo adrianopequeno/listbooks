@@ -2,7 +2,7 @@
 "use strict";
 
 var marko_template = module.exports = require("marko/src/html").t(__filename),
-    marko_componentType = "/criando_servidor_nodejs$1.0.0/src/app/views/base/base/home.marko",
+    marko_componentType = "/criando_servidor_nodejs$1.0.0/src/app/views/base/home/home.marko",
     marko_renderer = require("marko/src/runtime/components/renderer"),
     marko_loadTag = require("marko/src/runtime/helpers/load-tag"),
     init_components_tag = marko_loadTag(require("marko/src/core-tags/components/init-components-tag")),
@@ -29,7 +29,7 @@ marko_template._ = marko_renderer(render, {
   });
 
 marko_template.meta = {
-    id: "/criando_servidor_nodejs$1.0.0/src/app/views/base/base/home.marko",
+    id: "/criando_servidor_nodejs$1.0.0/src/app/views/base/home/home.marko",
     tags: [
       "marko/src/core-tags/components/init-components-tag",
       "marko/src/core-tags/core/await/reorderer-renderer",

@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -e marko,js server.js"
+    "dev": "nodemon server.js --ignore *.marko.js"
   },
   "author": "Adriano Pequeno",
   "license": "ISC",
@@ -16,5 +16,8 @@
     "marko": "^4.27.0",
     "method-override": "^3.0.0",
     "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "@marko/express": "^2.1.0"
   }
 }
